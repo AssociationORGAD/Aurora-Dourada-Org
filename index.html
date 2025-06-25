@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Dourada</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fffaf0;
+      color: #222;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: #ffffffdd;
+      backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15);
+      z-index: 10000;
+      transition: background-color 0.3s ease;
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .navbar img {
+      height: 64px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .navbar img:hover {
+      transform: scale(1.05);
+    }
+    nav.nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 600;
+    }
+    nav.nav-links a {
+      text-decoration: none;
+      color: #4b4b4b;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color 0.3s ease;
+    }
+    nav.nav-links a::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 0;
+      background: #d4af37;
+      transition: width 0.3s ease;
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      border-radius: 2px;
+    }
+    nav.nav-links a:hover,
+    nav.nav-links a:focus {
+      color: #b8860b;
+    }
+    nav.nav-links a:hover::after,
+    nav.nav-links a:focus::after {
+      width: 100%;
+    }
+    .banner {
+      background: url('https://cdn.pixabay.com/photo/2016/11/29/10/07/forest-1868028_960_720.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+    .banner h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      max-width: 700px;
+      font-weight: 700;
+      z-index: 1;
+      line-height: 1.1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .banner button {
+      margin-top: 2.5rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border: none;
+      background-color: #d4af37;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1;
+    }
+    .banner button:hover,
+    .banner button:focus {
+      background-color: #b8860b;
+      box-shadow: 0 6px 14px rgba(184, 134, 11, 0.8);
+      outline: none;
+    }
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 6rem 2rem 4rem;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #b8860b;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #d4af37;
+      padding-bottom: 0.3rem;
+      max-width: max-content;
+    }
+    p {
+      font-size: 1.125rem;
+      color: #444;
+      max-width: 700px;
+      margin-bottom: 1rem;
+    }
+    .sobre-texto {
+      max-width: 700px;
+      color: #444;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      position: relative;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .sobre-texto.collapsed {
+      max-height: 160px;
+    }
+    .btn-leia-mais {
+      background: none;
+      border: none;
+      color: #b8860b;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 0.3rem;
+      padding: 0;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    .btn-leia-mais:hover,
+    .btn-leia-mais:focus {
+      color: #7a6611;
+      outline: none;
+    }
+    .card {
+      background: #fff7e6;
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(212, 175, 55, 0.4);
+    }
+    .testemunho {
+      font-style: italic;
+      background: #fff4cc;
+      padding: 1.5rem 2rem;
+      border-left: 6px solid #d4af37;
+      border-radius: 8px;
+      max-width: 700px;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 2px 6px rgba(212, 175, 55, 0.15);
+    }
+    form {
+      background: #fff7e6;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      box-shadow: 0 6px 10px rgba(212, 175, 55, 0.25);
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: #5a4a1f;
+    }
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="email"],
+    form input[type="tel"],
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      margin-top: 0.3rem;
+      border: 2px solid #d4af37;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+    }
+    form input[type="text"]:focus,
+    form input[type="date"]:focus,
+    form input[type="email"]:focus,
+    form input[type="tel"]:focus,
+    form select:focus,
+    form textarea:focus {
+      border-color: #b8860b;
+      outline: none;
+      background: #fffdf3;
+    }
+    form textarea {
+      min-height: 100px;
+    }
+    form input[type="checkbox"] {
+      width: auto;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    form button[type="submit"] {
+      background-color: #d4af37;
+      color: white;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.125rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+      display: block;
+    }
+    form button[type="submit"]:hover,
+    form button[type="submit"]:focus {
+      background-color: #b8860b;
+      box-shadow: 0 6px 14px rgba(184, 134, 11, 0.8);
+      outline: none;
+    }
+    footer {
+      background-color: #f2e8cf;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6f5f1f;
+      border-top: 2px solid #d4af37;
+      user-select: none;
+    }
+    footer a {
+      color: #b8860b;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover,
+    footer a:focus {
+      color: #7a6611;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      nav.nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+      .navbar img {
+        height: 50px;
+      }
+      .banner h1 {
+        font-size: 2rem;
+      }
+      main {
+        padding: 5rem 1rem 3rem;
+      }
+      form button[type="submit"] {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar" role="navigation" aria-label="Menu principal">
+      <img src="logo-aurora.png" alt="Logo Aurora Dourada" />
+      <nav class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#iniciativas">Iniciativas</a>
+        <a href="#testemunhos">Testemunhos</a>
+        <a href="#voluntariado">Voluntariado</a>
+        <a href="/interno" style="color: transparent;">A Luz nos Consome</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="banner" id="inicio" role="banner">
+    <h1>Ilumine-se. Renasça com a Aurora.</h1>
+    <button onclick="document.getElementById('sobre').scrollIntoView({behavior: 'smooth'});" aria-label="Descubra a Luz">Descubra a Luz</button>
+  </div>
+
+  <main>
+    <section id="sobre" tabindex="-1">
+      <h2>Sobre Nós</h2>
+      <p class="sobre-texto collapsed" id="sobre-texto">
+        A Aurora Dourada é uma organização não governamental de grande prestígio e reconhecimento regional, cujo compromisso declarado é o desenvolvimento social, o amparo às comunidades vulneráveis e a promoção do bem-estar coletivo. Com uma atuação multifacetada, a ONG concentra seus esforços em projetos de reconstrução urbana, educação, assistência social e revitalização ambiental, buscando sempre transformar realidades locais por meio de ações humanitárias eficazes e sustentáveis.
+        <br><br>
+        No comando dessa complexa estrutura está Anthony Ivo, uma figura carismática e enigmática que, publicamente, é conhecido como um empreendedor social visionário e líder comunitário de destaque. Sua trajetória é marcada por uma impressionante capacidade de articular parcerias entre o setor público, privado e terceiro setor, consolidando a Aurora Dourada como um exemplo de gestão eficiente e impacto social significativo.
+        <br><br>
+        Anthony Ivo é frequentemente apresentado em eventos e campanhas da ONG como um defensor fervoroso dos valores de solidariedade, justiça social e progresso sustentável. Sua imagem pública reforça a confiança da população e dos colaboradores, sendo visto como o rosto amigável e dedicado que lidera iniciativas para melhorar a qualidade de vida de milhares de pessoas.
+        <br><br>
+        Sob sua liderança, a Aurora Dourada construiu uma reputação sólida baseada na transparência, ética e responsabilidade social. A organização mantém uma infraestrutura moderna e acolhedora, que serve de ponto de encontro para oficinas, palestras, cursos de capacitação e eventos culturais, fomentando o fortalecimento da rede comunitária e a valorização da cidadania.
+        <br><br>
+        As campanhas da ONG, amplamente divulgadas em meios tradicionais e digitais, enfatizam temas como inclusão social, incentivo à educação, cuidado ambiental e participação popular, reforçando a missão de iluminar caminhos e abrir novas possibilidades para aqueles que enfrentam adversidades. Relatórios públicos detalham os resultados positivos alcançados, destacando o papel de Anthony Ivo como gestor estratégico e articulador.
+        <br><br>
+        Para a comunidade, Anthony é um símbolo de esperança e liderança, cuja presença inspira confiança e engajamento. Ele personifica os ideais da Aurora Dourada e representa a face benevolente de uma instituição que atua ostensivamente para a construção de uma sociedade mais justa e solidária.
+        <br><br>
+        No entanto, por trás dessa imagem pública cuidadosamente construída, Anthony Ivo mantém aspectos de sua atuação envoltos em segredo, protegidos por uma rede de sigilo que poucos conhecem. Essa dualidade permite à Aurora Dourada operar com eficiência em suas atividades públicas, enquanto preserva a discrição necessária para os propósitos ocultos que permeiam sua verdadeira missão.
+        <br><br>
+        Dessa forma, a ONG segue inserida no cotidiano da comunidade como um pilar de apoio e transformação, essencial para o bem-estar social, enquanto resguarda sua verdadeira face, desconhecida pela população que a vê apenas como uma força do bem e da renovação.
+      </p>
+      <button class="btn-leia-mais" aria-expanded="false" aria-controls="sobre-texto" id="btn-leia-mais">Leia mais</button>
+    </section>
+
+    <section id="iniciativas" tabindex="-1">
+      <h2>Iniciativas</h2>
+      <div class="card" tabindex="0">
+        <h3>Projeto Semente Viva</h3>
+        <p>Distribuição de cestas básicas e kits de higiene para jovens e famílias em situação de risco.</p>
+      </div>
+      <div class="card" tabindex="0">
+        <h3>Programa Alvorada</h3>
+        <p>Mutirões comunitários e atendimento social gratuito.</p>
+      </div>
+      <div class="card" tabindex="0">
+        <h3>Círculo de Reintegração</h3>
+        <p>Acompanhamento de pessoas que buscam reestabelecimento financeiro e reinserção no mercado de trabalho.</p>
+      </div>
+    </section>
+
+    <section id="testemunhos" tabindex="-1">
+      <h2>Testemunhos</h2>
+      <p class="testemunho" tabindex="0">
+        "Receber apoio da Aurora Dourada foi essencial. Hoje tenho comida na mesa e esperança."
+      </p>
+      <p class="testemunho" tabindex="0">
+        "A ajuda chegou no momento mais difícil. Serei eternamente grata pela assistência."
+      </p>
+    </section>
+
+    <section id="voluntariado" tabindex="-1">
+      <h2>Voluntariado</h2>
+      <form>
+        <label>Nome completo:<br /><input type="text" name="nome" required /></label><br /><br />
+        <label>Data de nascimento:<br /><input type="date" name="nascimento" required /></label><br /><br />
+        <label>E-mail:<br /><input type="email" name="email" required /></label><br /><br />
+        <label>Telefone:<br /><input type="tel" name="telefone" /></label><br /><br />
+        <label>Motivação para se juntar:<br /><textarea name="motivacao" required></textarea></label><br /><br />
+        <label>Você já participou de ações sociais antes?
+          <select name="experiencia"><option>Sim</option><option>Não</option></select>
+        </label><br /><br />
+        <label>Está disponível aos finais de semana?
+          <select name="disponibilidade"><option>Sim</option><option>Não</option></select>
+        </label><br /><br />
+        <label><input type="checkbox" required /> Aceito o armazenamento e uso das informações.</label><br /><br />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>A Aurora Dourada não é filiada a nenhuma instituição religiosa ou política.</p>
+    <p><a href="/interno" style="color: transparent;">A Luz nos Consome</a></p>
+    <p>Contato: <a href="mailto:douradaorgaurora@gmail.com">douradaorgaurora@gmail.com</a></p>
+  </footer>
+
+  <script>
+    const btnLeiaMais = document.getElementById('btn-leia-mais');
+    const sobreTexto = document.getElementById('sobre-texto');
+
+    btnLeiaMais.addEventListener('click', () => {
+      const expanded = btnLeiaMais.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
+        sobreTexto.classList.add('collapsed');
+        btnLeiaMais.textContent = 'Leia mais';
+        btnLeiaMais.setAttribute('aria-expanded', 'false');
+      } else {
+        sobreTexto.classList.remove('collapsed');
+        btnLeiaMais.textContent = 'Leia menos';
+        btnLeiaMais.setAttribute('aria-expanded', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
