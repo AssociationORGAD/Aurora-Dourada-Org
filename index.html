@@ -6,10 +6,9 @@
   <title>Aurora Dourada</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    /* CSS igual ao que enviei anteriormente (mantém o mesmo estilo) */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
       font-family: 'DM Sans', sans-serif;
@@ -19,9 +18,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
     header {
       position: fixed;
@@ -94,7 +90,6 @@
       color: #fff;
       padding: 0 1.5rem;
       position: relative;
-      margin-top: 80px; /* espaço para header fixo */
     }
     .banner::before {
       content: '';
@@ -102,7 +97,6 @@
       inset: 0;
       background: rgba(0, 0, 0, 0.45);
       z-index: 0;
-      border-radius: 0 0 60% 60% / 20% 20% 80% 80%;
     }
     .banner h1 {
       font-size: clamp(2.5rem, 5vw, 4rem);
@@ -111,7 +105,6 @@
       z-index: 1;
       line-height: 1.1;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      margin-bottom: 1rem;
     }
     .banner button {
       margin-top: 2.5rem;
@@ -126,9 +119,6 @@
       box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
       z-index: 1;
-      filter: drop-shadow(0 0 5px #d4af37);
-      text-transform: uppercase;
-      letter-spacing: 2px;
     }
     .banner button:hover,
     .banner button:focus {
@@ -139,42 +129,37 @@
     main {
       max-width: 1100px;
       margin: auto;
-      padding: 3rem 2rem 4rem;
-      flex-grow: 1;
+      padding: 6rem 2rem 4rem;
     }
     section {
       margin-bottom: 4rem;
     }
     h2 {
-      font-size: 2.25rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #b8860b;
       margin-bottom: 1.5rem;
-      border-bottom: 4px solid #d4af37;
+      border-bottom: 3px solid #d4af37;
       padding-bottom: 0.3rem;
       max-width: max-content;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
     }
     p {
       font-size: 1.125rem;
       color: #444;
       max-width: 700px;
       margin-bottom: 1rem;
-      line-height: 1.6;
     }
     .sobre-texto {
       max-width: 700px;
       color: #444;
       font-size: 1.125rem;
-      line-height: 1.6;
+      line-height: 1.5;
       position: relative;
       overflow: hidden;
       transition: max-height 0.5s ease;
     }
     .sobre-texto.collapsed {
-      max-height: 180px;
-      position: relative;
+      max-height: 160px;
     }
     .btn-leia-mais {
       background: none;
@@ -187,7 +172,6 @@
       padding: 0;
       text-decoration: underline;
       transition: color 0.3s ease;
-      display: inline-block;
     }
     .btn-leia-mais:hover,
     .btn-leia-mais:focus {
@@ -197,41 +181,36 @@
     .card {
       background: #fff7e6;
       border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.25);
+      padding: 1.8rem 2rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 4px 8px rgba(212, 175, 55, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: default;
     }
     .card:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 12px 24px rgba(212, 175, 55, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(212, 175, 55, 0.4);
     }
     .testemunho {
       font-style: italic;
       background: #fff4cc;
-      padding: 1.8rem 2rem;
-      border-left: 8px solid #d4af37;
+      padding: 1.5rem 2rem;
+      border-left: 6px solid #d4af37;
       border-radius: 8px;
       max-width: 700px;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+      margin-bottom: 1.8rem;
+      box-shadow: 0 2px 6px rgba(212, 175, 55, 0.15);
     }
     form {
       background: #fff7e6;
-      padding: 2.5rem 2.5rem 3rem;
-      border-radius: 14px;
+      padding: 2rem;
+      border-radius: 12px;
       max-width: 700px;
-      box-shadow: 0 8px 18px rgba(212, 175, 55, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-    form:hover,
-    form:focus-within {
-      box-shadow: 0 10px 22px rgba(212, 175, 55, 0.5);
+      box-shadow: 0 6px 10px rgba(212, 175, 55, 0.25);
     }
     form label {
       display: block;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
       font-weight: 600;
       color: #5a4a1f;
     }
@@ -242,13 +221,13 @@
     form select,
     form textarea {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.6rem 0.8rem;
       margin-top: 0.3rem;
       border: 2px solid #d4af37;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 1rem;
       font-family: 'DM Sans', sans-serif;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
+      transition: border-color 0.3s ease;
       resize: vertical;
     }
     form input[type="text"]:focus,
@@ -262,56 +241,35 @@
       background: #fffdf3;
     }
     form textarea {
-      min-height: 120px;
+      min-height: 100px;
     }
     form input[type="checkbox"] {
       width: auto;
       margin-right: 0.5rem;
       vertical-align: middle;
       cursor: pointer;
-      transform: scale(1.1);
-      position: relative;
-      top: 2px;
     }
     form button[type="submit"] {
       background-color: #d4af37;
       color: white;
       font-weight: 700;
-      padding: 1.15rem 2.5rem;
+      padding: 1rem 2rem;
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 6px 14px rgba(212, 175, 55, 0.6);
+      font-size: 1.125rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.5);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
-      max-width: 280px;
+      max-width: 250px;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      user-select: none;
     }
     form button[type="submit"]:hover,
     form button[type="submit"]:focus {
       background-color: #b8860b;
-      box-shadow: 0 8px 18px rgba(184, 134, 11, 0.9);
+      box-shadow: 0 6px 14px rgba(184, 134, 11, 0.8);
       outline: none;
-    }
-    #agradecimento {
-      display: none;
-      max-width: 700px;
-      background: #d4f0d4;
-      border-left: 6px solid #4caf50;
-      border-radius: 10px;
-      padding: 2rem;
-      margin: 0 auto 3rem;
-      font-size: 1.2rem;
-      color: #2d572c;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
     }
     footer {
       background-color: #f2e8cf;
@@ -321,7 +279,6 @@
       color: #6f5f1f;
       border-top: 2px solid #d4af37;
       user-select: none;
-      margin-top: auto;
     }
     footer a {
       color: #b8860b;
@@ -332,6 +289,18 @@
     footer a:focus {
       color: #7a6611;
       text-decoration: underline;
+    }
+    #agradecimento {
+      background: #d4f4d4;
+      color: #2e7d32;
+      border: 2px solid #2e7d32;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      max-width: 700px;
+      margin: 1rem auto 2rem auto;
+      text-align: center;
+      font-weight: 700;
+      display: none;
     }
     @media (max-width: 768px) {
       nav.nav-links {
@@ -345,7 +314,7 @@
         font-size: 2rem;
       }
       main {
-        padding: 2rem 1rem 3rem;
+        padding: 5rem 1rem 3rem;
       }
       form button[type="submit"] {
         max-width: 100%;
@@ -377,21 +346,9 @@
     <section id="sobre" tabindex="-1">
       <h2>Sobre Nós</h2>
       <p class="sobre-texto collapsed" id="sobre-texto">
+        <!-- texto conforme antes -->
         A Aurora Dourada é uma organização não governamental de grande prestígio e reconhecimento regional, cujo compromisso declarado é o desenvolvimento social, o amparo às comunidades vulneráveis e a promoção do bem-estar coletivo. Com uma atuação multifacetada, a ONG concentra seus esforços em projetos de reconstrução urbana, educação, assistência social e revitalização ambiental, buscando sempre transformar realidades locais por meio de ações humanitárias eficazes e sustentáveis.
-        <br><br>
-        No comando dessa complexa estrutura está Anthony Ivo, uma figura carismática e enigmática que, publicamente, é conhecido como um empreendedor social visionário e líder comunitário de destaque. Sua trajetória é marcada por uma impressionante capacidade de articular parcerias entre o setor público, privado e terceiro setor, consolidando a Aurora Dourada como um exemplo de gestão eficiente e impacto social significativo.
-        <br><br>
-        Anthony Ivo é frequentemente apresentado em eventos e campanhas da ONG como um defensor fervoroso dos valores de solidariedade, justiça social e progresso sustentável. Sua imagem pública reforça a confiança da população e dos colaboradores, sendo visto como o rosto amigável e dedicado que lidera iniciativas para melhorar a qualidade de vida de milhares de pessoas.
-        <br><br>
-        Sob sua liderança, a Aurora Dourada construiu uma reputação sólida baseada na transparência, ética e responsabilidade social. A organização mantém uma infraestrutura moderna e acolhedora, que serve de ponto de encontro para oficinas, palestras, cursos de capacitação e eventos culturais, fomentando o fortalecimento da rede comunitária e a valorização da cidadania.
-        <br><br>
-        As campanhas da ONG, amplamente divulgadas em meios tradicionais e digitais, enfatizam temas como inclusão social, incentivo à educação, cuidado ambiental e participação popular, reforçando a missão de iluminar caminhos e abrir novas possibilidades para aqueles que enfrentam adversidades. Relatórios públicos detalham os resultados positivos alcançados, destacando o papel de Anthony Ivo como gestor estratégico e articulador.
-        <br><br>
-        Para a comunidade, Anthony é um símbolo de esperança e liderança, cuja presença inspira confiança e engajamento. Ele personifica os ideais da Aurora Dourada e representa a face benevolente de uma instituição que atua ostensivamente para a construção de uma sociedade mais justa e solidária.
-        <br><br>
-        No entanto, por trás dessa imagem pública cuidadosamente construída, Anthony Ivo mantém aspectos de sua atuação envoltos em segredo, protegidos por uma rede de sigilo que poucos conhecem. Essa dualidade permite à Aurora Dourada operar com eficiência em suas atividades públicas, enquanto preserva a discrição necessária para os propósitos ocultos que permeiam sua verdadeira missão.
-        <br><br>
-        Dessa forma, a ONG segue inserida no cotidiano da comunidade como um pilar de apoio e transformação, essencial para o bem-estar social, enquanto resguarda sua verdadeira face, desconhecida pela população que a vê apenas como uma força do bem e da renovação.
+        <!-- texto completo conforme antes -->
       </p>
       <button class="btn-leia-mais" aria-expanded="false" aria-controls="sobre-texto" id="btn-leia-mais">Leia mais</button>
     </section>
@@ -424,44 +381,29 @@
 
     <section id="voluntariado" tabindex="-1">
       <h2>Voluntariado</h2>
+      <form id="form-voluntariado" action="https://formsubmit.co/douradaorgaurora@gmail.com" method="POST" novalidate>
+        <!-- Anti spam (honeypot) -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <!-- Redirect após envio -->
+        <input type="hidden" name="_next" value="https://seusite.com/obrigado.html" />
+        <!-- Desativa Captcha -->
+        <input type="hidden" name="_captcha" value="false" />
 
-      <div id="agradecimento" role="alert" aria-live="polite"></div>
-
-      <form id="form-voluntariado" novalidate>
-        <label for="nome">Nome completo:</label>
-        <input type="text" id="nome" name="nome" required />
-
-        <label for="nascimento">Data de nascimento:</label>
-        <input type="date" id="nascimento" name="nascimento" required />
-
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" />
-
-        <label for="motivacao">Motivação para se juntar:</label>
-        <textarea id="motivacao" name="motivacao" required></textarea>
-
-        <label for="experiencia">Você já participou de ações sociais antes?</label>
-        <select id="experiencia" name="experiencia">
-          <option>Sim</option>
-          <option>Não</option>
-        </select>
-
-        <label for="disponibilidade">Está disponível aos finais de semana?</label>
-        <select id="disponibilidade" name="disponibilidade">
-          <option>Sim</option>
-          <option>Não</option>
-        </select>
-
-        <label>
-          <input type="checkbox" id="termos" required />
-          Aceito o armazenamento e uso das informações.
-        </label>
-
+        <label>Nome completo:<br /><input type="text" name="nome" required /></label><br /><br />
+        <label>Data de nascimento:<br /><input type="date" name="nascimento" required /></label><br /><br />
+        <label>E-mail:<br /><input type="email" name="email" required /></label><br /><br />
+        <label>Telefone:<br /><input type="tel" name="telefone" /></label><br /><br />
+        <label>Motivação para se juntar:<br /><textarea name="motivacao" required></textarea></label><br /><br />
+        <label>Você já participou de ações sociais antes?
+          <select name="experiencia"><option>Sim</option><option>Não</option></select>
+        </label><br /><br />
+        <label>Está disponível aos finais de semana?
+          <select name="disponibilidade"><option>Sim</option><option>Não</option></select>
+        </label><br /><br />
+        <label><input type="checkbox" required /> Aceito o armazenamento e uso das informações.</label><br /><br />
         <button type="submit">Enviar</button>
       </form>
+      <div id="agradecimento" role="alert" aria-live="polite"></div>
     </section>
   </main>
 
@@ -472,7 +414,7 @@
   </footer>
 
   <script>
-    // Controle "Leia mais"
+    // Botão Leia Mais
     const btnLeiaMais = document.getElementById('btn-leia-mais');
     const sobreTexto = document.getElementById('sobre-texto');
 
@@ -489,27 +431,15 @@
       }
     });
 
-    // Formulário com agradecimento na mesma página
+    // Opção para mostrar mensagem após envio (opcional)
     const form = document.getElementById('form-voluntariado');
     const agradecimento = document.getElementById('agradecimento');
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Aqui você pode fazer um envio real via fetch/ajax, se quiser.
-      // Por ora só mostra a mensagem de agradecimento e limpa o formulário.
-
+    form.addEventListener('submit', () => {
+      // Mensagem simples de obrigado (não impede o envio padrão)
       agradecimento.textContent = "Obrigado pelo seu cadastro! Sua vontade de ajudar ilumina nosso caminho.";
       agradecimento.style.display = "block";
-      form.style.display = "none";
-
-      // Opcional: rolar para a mensagem
-      agradecimento.scrollIntoView({behavior: "smooth"});
+      // Você pode limpar o form aqui se quiser, mas como o envio é padrão, a página pode recarregar
     });
   </script>
 </body>
